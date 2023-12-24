@@ -11,8 +11,7 @@ double riemann_algo(double (*equation)(adt_string), adt_string* equation_str, do
 
     for (int i = 0; i < n; i++) {
         double xi = a + i * h;
-        sum += equation(*equation_str) * h;  // Pass the adt_string to the equation function
-    }
+        sum += equation(*equation_str) * h; 
 
     return sum;
 }
@@ -26,12 +25,12 @@ void calculate_integral(adt_integral* integral) {
 int main() {
     adt_integral my_integral;
 
-    my_integral.equation_2B_parsed = newADTS_str("x^2");  // Replace with your actual equation
+    my_integral.equation_2B_parsed = newADTS_str("x^2"); 
     my_integral.initial_limit = 0.0;
     my_integral.final_limit = 1.0;
     my_integral.equation_parsed = parse_equation;
     my_integral.precision = 100;
-    my_integral.final_result = 0.0;  // Initialize to a default value
+    my_integral.final_result = 0.0; 
 
     calculate_integral(&my_integral);
 

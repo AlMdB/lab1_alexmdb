@@ -117,7 +117,6 @@ adt_string* concat_adt_string(adt_string* s1, ...) {
 
     size_t total_size = s1->base->size;
 
-    // Calculate the total size of the concatenated string
     adt_string* current_str = s1;
     while (current_str != NULL) {
         total_size += current_str->base->size;
@@ -126,12 +125,10 @@ adt_string* concat_adt_string(adt_string* s1, ...) {
 
     va_end(args);
 
-    // Allocate memory for the concatenated string
     adt_string* new_str = malloc(sizeof(adt_string));
     if (new_str) {
         new_str->base->data = malloc(total_size + 1);
         if (new_str->base->data) {
-            // Copy each string into the new concatenated string
             current_str = s1;
             char* destination = (char*)new_str->base->data;
             while (current_str != NULL) {

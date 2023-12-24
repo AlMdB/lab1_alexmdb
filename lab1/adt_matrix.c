@@ -207,7 +207,7 @@ Matrix* inverse_Matrix(const Matrix* mtx) {
 
 double determinant_Matrix(const Matrix* mtx) {
     if (mtx->rows != mtx->cols) {
-        printf("\nInvalid Operation. Matrix must be square for determinant calculation.\n");
+        printf("\nTamanhos incorretos para determinante.\n");
         return NAN;
     }
     Matrix* copy = zero_Matrix(mtx->rows,mtx->cols);
