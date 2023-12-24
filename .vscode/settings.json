@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "adt_base.h": "c",
+        "adt_matrix.h": "c",
+        "adt_string.h": "c",
+        "math.h": "c"
+    }
+}

@@ -1,12 +1,15 @@
 #ifndef ADT_BASE_H
 #define ADT_BASE_H
 
+
+#include <stdlib.h>
+
 #define adt_base_data(adt) ((adt)->data) 
 #define adt_base_size(adt)  ((adt)->size)
 
 
 typedef struct adt_base{
-    void*data;
+    void* data;
     size_t size;
 }adt_base;
 

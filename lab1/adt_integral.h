@@ -13,12 +13,12 @@ typedef struct adt_integral{
 }adt_integral;
 
 
-double equation_parsing_result{
-
-}
+double equation_parsing_result(adt_string* function_2b_parsed);
 
 double riemann_algo();
 
+double newton_cotes_algo();
 
+double gauss_legendre();
 
 #endif
