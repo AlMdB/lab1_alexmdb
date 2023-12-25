@@ -117,7 +117,7 @@ void transpose_Matrix(Matrix* mtx) {
 
 Matrix* dot_product(const Matrix* mtx1, const Matrix* mtx2) {
     if (mtx1->cols != mtx2->rows) {
-        printf("\nInvalid Operation. Matrix dimensions mismatch.\n");
+        printf("\ntamanho erado para multiplicacao.\n");
         return NULL;
     }
 
@@ -160,7 +160,7 @@ void print_matrix(const Matrix* mtx) {
 
 Matrix* inverse_Matrix(const Matrix* mtx) {
     if (mtx->rows != mtx->cols) {
-        printf("\nInvalid Operation. Matrix must be square for inversion.\n");
+        printf("\nTamanho errado para inverter.\n");
         return NULL;
     }
 
@@ -179,7 +179,7 @@ Matrix* inverse_Matrix(const Matrix* mtx) {
         double pivot = ((double**)copy->data->data)[i][i];
 
         if (fabs(pivot) < 1e-10) {
-            printf("\nMatrix is not invertible (singular matrix).\n");
+            printf("\nnao intverticvel.\n");
             delete_Matrix(copy);
             delete_Matrix(identity);
             return NULL;

@@ -2,14 +2,21 @@
 #define _DSTRING_H
 
 #include "adt_base.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+
 
 typedef struct adt_string{
     adt_base* base;
 }adt_string;
 
 
-#define adt_string_size(aString) ((aString)->base.size)
-#define $(aString) (aString->base)
+#define adt_string_size(aString) ((aString)->base->size)
+#define $(aString) ((char*)(aString->base->data))
+#define $$(aString) ((char*)((adt_string*)(aString))->base->data)
+
 
 #define new_adt_string _Generic((I), \
     char*  : new_adt_string_str, \
@@ -22,7 +29,7 @@ typedef struct adt_string{
 
 
 adt_string *adt_string_empty();
-
+void append_char(adt_string* str, char c);
 adt_string *newADTS_str(char *str);
 adt_string *newADTS_char(char c);
 adt_string *newADTS_int(int i);    

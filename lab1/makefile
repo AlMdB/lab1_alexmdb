@@ -1,25 +1,26 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -Wall -Wextra -std=c17
+LDFLAGS =
 
-all: main
+SRCDIR = src
+OBJDIR = obj
+BINDIR = bin
 
-main: main.o adt_matrix.o adt_integral.o adt_string.o adt_base.o
-	$(CC) $(CFLAGS) -o $@ $^ -lm
+SOURCES = $(wildcard $(SRCDIR)/*.c)
+OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
+EXECUTABLE = $(BINDIR)/main
 
-main.o: main.c adt_matrix.h adt_integral.h adt_string.h adt_base.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+.PHONY: all clean
 
-adt_matrix.o: adt_matrix.c adt_matrix.h adt_base.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+all: $(EXECUTABLE)
 
-adt_integral.o: adt_integral.c adt_integral.h adt_base.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(EXECUTABLE): $(OBJECTS)
+	@if not exist "$(dir $@)" mkdir "$(dir $@)"
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(LDFLAGS)
 
-adt_string.o: adt_string.c adt_string.h adt_base.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-adt_base.o: adt_base.c adt_base.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@if not exist "$(dir $@)" mkdir "$(dir $@)"
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o main
+	rm -rf $(OBJDIR) $(BINDIR)
